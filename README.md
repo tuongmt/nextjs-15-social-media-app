@@ -5,7 +5,11 @@ npm i lucia @lucia-auth/adapter-prisma prisma @prisma/client @tanstack/react-que
 npm i -d prettier eslint-config-prettier prettier-plugin-tailwindcss --legacy-peer-deps
 # UI
 npx --legacy-peer-deps shadcn-ui@latest init
-npx --legacy-peer-deps shadcn-ui@latest add button dialog dropdown-menu form input label skeleton tabs textarea toast tooltip
+npx --legacy-peer-deps shadcn-ui@latest add button dialog dropdown-menu form input 
+label skeleton tabs textarea toast tooltip
+# Database
+npx prisma init
+close any running processes and run: npx prisma db push
 ## Getting Started
 npm run dev
 
