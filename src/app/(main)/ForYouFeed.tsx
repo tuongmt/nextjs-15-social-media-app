@@ -1,6 +1,7 @@
 "use client";
 
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
+import DeletePostDialog from "@/components/posts/DeletePostDialog";
 import Post from "@/components/posts/Post";
 import PostsLoadingSkeleton from "@/components/posts/PostsLoadingSkeleton";
 import kyInstance from "@/lib/ky";
@@ -35,10 +36,12 @@ export default function ForYouFeed() {
     return <PostsLoadingSkeleton />;
   }
 
-  if(status ==="success" && !posts.length && !hasNextPage){
-    return <p className="text-center to-muted-foreground">
+  if (status === "success" && !posts.length && !hasNextPage) {
+    return (
+      <p className="to-muted-foreground text-center">
         No one has posted anything yet.
-    </p>
+      </p>
+    );
   }
 
   if (status === "error") {
@@ -57,7 +60,6 @@ export default function ForYouFeed() {
       {posts.map((post) => (
         <Post key={post.id} post={post} />
       ))}
-
       {isFetchingNextPage && <Loader2 className="mx-auto my-3 animate-spin" />}
     </InfiniteScrollContainer>
   );
