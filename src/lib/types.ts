@@ -5,6 +5,8 @@ export function getUserDataSelect(loggedInUserId: string) {
     id: true,
     username: true,
     displayName: true,
+    bio: true,
+    createAt: true,
     avatarUrl: true,
     followers: {
       where: {
@@ -17,10 +19,15 @@ export function getUserDataSelect(loggedInUserId: string) {
     _count: {
       select: {
         followers: true,
+        posts: true,
       },
     },
   } satisfies Prisma.UserSelect;
 }
+
+export type UserData = Prisma.UserGetPayload<{
+  select: ReturnType<typeof getUserDataSelect>;
+}>;
 
 export function getPostDataInclude(loggedInUserId: string) {
   return {
