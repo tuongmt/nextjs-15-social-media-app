@@ -12,6 +12,7 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 import UserPosts from "./UserPosts";
 import PostEditor from "@/components/posts/editor/PostEditor";
+import Linkify from "@/components/Linkify";
 
 interface PageProps {
   params: {
@@ -69,7 +70,7 @@ export default async function Page({ params: { username } }: PageProps) {
         {loggedInUser.username === username ? (
           <PostEditor />
         ) : (
-          <div className="rounded-2xl bg-card p-5 shadow-sm border">
+          <div className="rounded-2xl border bg-card p-5 shadow-sm">
             <h2 className="text-center text-2xl font-bold">
               {user.displayName}&apos;s posts
             </h2>
@@ -125,9 +126,11 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
       {user.bio && (
         <>
           <hr />
-          <div className="overflow-hidden whitespace-pre-line break-words">
-            {user.bio}
-          </div>
+          <Linkify>
+            <div className="overflow-hidden whitespace-pre-line break-words">
+              {user.bio}
+            </div>
+          </Linkify>
         </>
       )}
     </div>
