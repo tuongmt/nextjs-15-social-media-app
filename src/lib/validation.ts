@@ -35,3 +35,11 @@ export type UpdateUserProfileValues = z.infer<typeof updateUserProfileSchema>;
 export const createCommentSchema = z.object({
   content: requiredString,
 });
+
+export const changeUserPasswordSchema = z.object({
+  oldPassword: requiredString,
+  newPassword: requiredString.min(6, "Must be at least 6 characters"),
+});
+
+export type ChangeUserPasswordValues = z.infer<typeof changeUserPasswordSchema>;
+

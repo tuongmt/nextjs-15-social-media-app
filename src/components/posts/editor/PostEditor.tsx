@@ -15,6 +15,7 @@ import { ImageIcon, Loader2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useDropzone } from "@uploadthing/react";
+import { useTheme } from "next-themes";
 
 export default function PostEditor() {
   const { user } = useSession();
@@ -68,10 +69,10 @@ export default function PostEditor() {
     );
   }
 
-  function onPaste(e: ClipboardEvent<HTMLInputElement>){
+  function onPaste(e: ClipboardEvent<HTMLInputElement>) {
     const files = Array.from(e.clipboardData.items)
-    .filter(item=>item.kind=== "file")
-    .map(item => item.getAsFile()) as File[];
+      .filter((item) => item.kind === "file")
+      .map((item) => item.getAsFile()) as File[];
     startUpload(files);
   }
 
@@ -82,10 +83,13 @@ export default function PostEditor() {
         <div {...rootProps} className="w-full">
           <EditorContent
             editor={editor}
-            className={cn("max-h-[20rem] w-full overflow-y-auto rounded-2xl border bg-background px-5 py-3", isDragActive && "outline-dashed")}
+            className={cn(
+              "max-h-[20rem] w-full overflow-y-auto rounded-2xl border bg-background px-5 py-3",
+              isDragActive && "outline-dashed",
+            )}
             onPaste={onPaste}
           />
-          <input {...getInputProps()} onPaste={onPaste}/>
+          <input {...getInputProps()} onPaste={onPaste} />
         </div>
       </div>
       {/* !! return boolean type, false (0, null, undefined) otherwise true */}

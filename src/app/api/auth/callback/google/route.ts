@@ -91,20 +91,20 @@ export async function GET(req: NextRequest) {
     );
 
     return new Response(null, {
-        status: 302,
-        headers: {
-          Location: "/",
-        },
-      });
+      status: 302,
+      headers: {
+        Location: "/",
+      },
+    });
   } catch (error) {
     console.error(error);
-    if(error instanceof OAuth2RequestError){
-        return new Response(null,{
-            status: 400
-        })
+    if (error instanceof OAuth2RequestError) {
+      return new Response(null, {
+        status: 400,
+      });
     }
-    return new Response(null,{
-        status: 500
-    })
+    return new Response(null, {
+      status: 500,
+    });
   }
 }
