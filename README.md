@@ -1,4 +1,5 @@
 ## Install Packages
+npx creact-next-app@rc
 
 # Default
 
@@ -10,13 +11,14 @@ npm i -d prettier eslint-config-prettier prettier-plugin-tailwindcss --legacy-pe
 
 # UI
 
-npx --legacy-peer-deps shadcn-ui@latest init
-npx --legacy-peer-deps shadcn-ui@latest add button dialog dropdown-menu form input
+npx --legacy-peer-deps shadcn@latest init
+npx --legacy-peer-deps shadcn@latest add button dialog dropdown-menu form input
 label skeleton tabs textarea toast tooltip
 
 # Database
 
 npx prisma init
+npx prisma generate
 close any running processes and run (update db): npx prisma db push
 open db: npx prisma studio
 
